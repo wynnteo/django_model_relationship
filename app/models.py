@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.contrib.auth.models import User
-
+from django.conf import settings
 # Create your models here.
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
-        User, related_name='profile', on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
     address = models.CharField(max_length=250)
     dob = models.DateField()
     mobile = models.CharField(max_length=30)
