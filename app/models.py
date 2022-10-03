@@ -4,6 +4,15 @@ from django.conf import settings
 # Create your models here.
 
 
+class Account(models.Model):
+    account_number = models.CharField(max_length=30)
+    account_type = models.CharField(max_length=20)
+    open_date = models.DateField()
+    balance = models.DecimalField(default=0, decimal_places=2, max_digits=12)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='accounts',
+                             on_delete=models.CASCADE)
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
@@ -26,12 +35,9 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     pass
-    # add additional fields in here
     username = None
     email = models.EmailField(verbose_name='email address', unique=True)
-
     objects = CustomUserManager()
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 

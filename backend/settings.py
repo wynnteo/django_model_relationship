@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("POSTGRESQL_DBNAME", 'tutorial-postgres'),
+        'NAME': os.getenv("POSTGRESQL_DBNAME", 'tutorial'),
         'OPTIONS': {
             'options': '-c search_path=django'
         },
