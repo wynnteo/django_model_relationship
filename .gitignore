@@ -110,6 +110,7 @@ ENV/
 env.bak/
 venv.bak/
 
+/backend/settings.py
 # Spyder project settings
 .spyderproject
 .spyproject
