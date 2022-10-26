@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import UserProfile, Account
+from .models import UserProfile, Account, Product, Order
 
 
 class AccountSerializer(serializers.ModelSerializer):
@@ -33,3 +33,17 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         UserProfile.objects.create(user=user, **profile_data)
         return user
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('id', 'name', 'price', 'sku')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Order
+        fields = ('id', 'order_date', 'status', 'products')

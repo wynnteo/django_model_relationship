@@ -44,3 +44,15 @@ class CustomUser(AbstractUser):
     def __str__(self):
         """ Return string representation of our user """
         return self.email
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=200)
+    sku = models.CharField(max_length=20)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=8)
+
+
+class Order(models.Model):
+    order_date = models.DateField()
+    status = models.CharField(max_length=20)
+    products = models.ManyToManyField(Product, related_name="products")
