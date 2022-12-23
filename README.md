@@ -1,5 +1,7 @@
-# django_model_relationship
-This source code explained the django model relationship.
+# Django Model Relationships
 
-Create User API:
-http://localhost:8000/api/users/ POST
+In this tutorial, we will learn 3 types of model relationships in Django. 
+
+For more details:
+https://blog.devgenius.io/django-model-relationship-37da8f6f34e9
+
